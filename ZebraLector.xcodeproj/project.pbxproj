@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F24E57902AF592D90075F397 /* EventReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E578F2AF592D90075F397 /* EventReceiver.swift */; };
 		F28DE2352AF435D5002E6E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DE2342AF435D5002E6E39 /* AppDelegate.swift */; };
 		F28DE2372AF435D5002E6E39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DE2362AF435D5002E6E39 /* SceneDelegate.swift */; };
 		F28DE2392AF435D5002E6E39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DE2382AF435D5002E6E39 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F24E578F2AF592D90075F397 /* EventReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventReceiver.swift; sourceTree = "<group>"; };
 		F28DE2312AF435D5002E6E39 /* ZebraLector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZebraLector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28DE2342AF435D5002E6E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F28DE2362AF435D5002E6E39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				F28DE2342AF435D5002E6E39 /* AppDelegate.swift */,
 				F28DE2362AF435D5002E6E39 /* SceneDelegate.swift */,
+				F24E578F2AF592D90075F397 /* EventReceiver.swift */,
 				F28DE2842AF47C10002E6E39 /* Zebra.swift */,
 				F28DE2382AF435D5002E6E39 /* ViewController.swift */,
 				F28DE23A2AF435D5002E6E39 /* Main.storyboard */,
@@ -278,6 +281,7 @@
 				F28DE2392AF435D5002E6E39 /* ViewController.swift in Sources */,
 				F28DE2352AF435D5002E6E39 /* AppDelegate.swift in Sources */,
 				F28DE2852AF47C10002E6E39 /* Zebra.swift in Sources */,
+				F24E57902AF592D90075F397 /* EventReceiver.swift in Sources */,
 				F28DE2372AF435D5002E6E39 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

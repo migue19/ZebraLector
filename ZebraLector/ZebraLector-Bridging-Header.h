@@ -10,11 +10,11 @@
 
 
 #endif /* ZebraLector_Bridging_Header_h */
+#import "RfidSdkApi.h"
 #import "RfidAttribute.h"
 #import "RfidSdkApiDelegate.h"
 #import "RfidSdkFactory.h"
 #import "RfidSdkDefs.h"
-#import "RfidSdkApiDelegate.h"
 #import "RfidReportConfig.h"
 #import "RfidAccessConfig.h"
 #import "RfidAntennaConfiguration.h"
@@ -34,7 +34,6 @@
 #import "RfidUntraceableConfig.h"
 #import "ISbtSdkApiDelegate.h"
 #import "RfidSdkDefs.h"
-#import "RfidSdkApiDelegate.h"
 #import "RfidReportConfig.h"
 #import "RfidAccessConfig.h"
 #import "RfidAntennaConfiguration.h"

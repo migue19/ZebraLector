@@ -27,11 +27,21 @@
                                     <action selector="startScanner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vio-Ry-ePR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-IW-VVq">
+                                <rect key="frame" x="147.66666666666666" y="459.66666666666669" width="97.666666666666657" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Show List"/>
+                                <connections>
+                                    <action selector="showList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QuY-B5-9YQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Sco-Bj-0pq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="57b-Br-Idp"/>
+                            <constraint firstItem="BcY-IW-VVq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YgS-Jz-V8G"/>
+                            <constraint firstItem="BcY-IW-VVq" firstAttribute="top" secondItem="Sco-Bj-0pq" secondAttribute="bottom" constant="16" id="ZyD-jE-cVc"/>
                             <constraint firstItem="Sco-Bj-0pq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ioC-EC-Vhq"/>
                         </constraints>
                     </view>
