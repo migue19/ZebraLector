@@ -22,6 +22,9 @@ class ViewController: UIViewController {
         apiInstance.srfidSubsribe(forEvents: Int32(SRFID_EVENT_MASK_READ | SRFID_EVENT_MASK_STATUS))
         apiInstance.srfidSubsribe(forEvents: Int32(SRFID_EVENT_MASK_BATTERY | SRFID_EVENT_MASK_TRIGGER))
         apiInstance.srfidSetOperationalMode(Int32(SRFID_OPMODE_MFI))
+        
+        apiInstance.srfidSubsribe(forEvents: Int32(SRFID_EVENT_READER_APPEARANCE | SRFID_EVENT_READER_DISAPPEARANCE))
+        apiInstance.srfidEnableAvailableReadersDetection(true)
     }
     @IBAction func startScanner(_ sender: Any) {
         let sdkVersion = apiInstance.srfidGetSdkVersion()
