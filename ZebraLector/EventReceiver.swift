@@ -8,6 +8,7 @@
 import Foundation
 
 class EventReceiver: NSObject, srfidISdkApiDelegate {
+    var delegate: EventReceiverDelegate?
     func srfidEventReaderAppeared(_ availableReader: srfidReaderInfo!) {
         print("RFID reader has appeared: ID = \(availableReader.getReaderID()) name = \(availableReader.getReaderName() ?? "")")
     }
@@ -17,11 +18,13 @@ class EventReceiver: NSObject, srfidISdkApiDelegate {
     }
     
     func srfidEventCommunicationSessionEstablished(_ activeReader: srfidReaderInfo!) {
-        print(activeReader ?? "")
+        let readerID = activeReader.getReaderID()
+        print("RFID reader has connected: ID = \(readerID) name = \(activeReader.getReaderName() ?? "")")
+        delegate?.establishConnection(readerID: readerID)
     }
     
     func srfidEventCommunicationSessionTerminated(_ readerID: Int32) {
-        
+        print("RFID reader has disconnected: ID = \(readerID)")
     }
     
     func srfidEventReadNotify(_ readerID: Int32, aTagData tagData: srfidTagData!) {
@@ -45,6 +48,9 @@ class EventReceiver: NSObject, srfidISdkApiDelegate {
     }
     
     func srfidEventBatteryNotity(_ readerID: Int32, aBatteryEvent batteryEvent: srfidBatteryEvent!) {
-        print(batteryEvent ?? "")
+        print("Battery status event received from RFID reader with ID = \(readerID)")
+        print("Battery level: \(batteryEvent.getPowerLevel())")
+        print("Charging: \(batteryEvent.getIsCharging() == false ? "NO" : "SI")")
+        print("Event cause: \(batteryEvent.getCause() ?? "")")
     }
 }

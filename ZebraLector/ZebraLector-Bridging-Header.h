@@ -10,6 +10,7 @@
 
 
 #endif /* ZebraLector_Bridging_Header_h */
+#import "RfidLinkProfile.h"
 #import "RfidSdkApi.h"
 #import "RfidAttribute.h"
 #import "RfidSdkApiDelegate.h"
