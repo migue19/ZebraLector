@@ -138,30 +138,22 @@ class ViewController: UIViewController {
         } else {
             print("Request failed")
         }
-        /* RF mode index to be set */
-        let link_profile_idx = 0;
-        /* tari to be set */
-        let tari = 0;
-        /* 20.0 dbm power level to be set */
-        let power = 200;
     }
-    func getProfile(readerID: Int32) {
-        /* RF mode index to be set */
-        var link_profile_idx: Int32 = 0;
-        /* tari to be set */
-        var tari: Int32 = 0;
-        /* 20.0 dbm power level to be set */
-        var power = 200;
+    /// Metodo para obtener el perfil
+    /// RfMode, Max Tari
+    func getProfile(readerID: Int32) -> srfidLinkProfile? {
         var profiles: NSMutableArray?
         var error_response: NSString?
         let result = apiInstance.srfidGetSupportedLinkProfiles(readerID, aLinkProfilesList: &profiles, aStatusMessage: &error_response)
-        
-        if let profiles = profiles, profiles.count > 0 {
-            let profile = profiles.lastObject as? srfidLinkProfile
-            link_profile_idx = profile?.getRFModeIndex() ?? 0
-            tari = profile?.getMaxTari() ?? 0
+        if SRFID_RESULT_SUCCESS == result {
+            if let profiles = profiles, profiles.count > 0 {
+                let profile = profiles.lastObject as? srfidLinkProfile
+                return profile
+    //            link_profile_idx = profile?.getRFModeIndex() ?? 0
+    //            tari = profile?.getMaxTari() ?? 0
+            }
         }
-        
+        return nil
     }
     /// Singulation Configuration
 }
