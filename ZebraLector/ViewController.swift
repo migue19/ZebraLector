@@ -6,7 +6,6 @@
 //
 import UIKit
 class ViewController: UIViewController {
-    var m_ReaderList: [String] = []
     var apiInstance: srfidISdkApi = srfidSdkFactory.createRfidSdkApiInstance()
     var eventListener: EventReceiver = EventReceiver()
     var available_readers: NSMutableArray?
@@ -140,7 +139,7 @@ class ViewController: UIViewController {
         }
     }
     /// Metodo para obtener el perfil
-    /// RfMode, Max Tari
+    /// RfMode, Min Tari, Max Tari, step Tari
     func getProfile(readerID: Int32) -> srfidLinkProfile? {
         var profiles: NSMutableArray?
         var error_response: NSString?
@@ -149,13 +148,11 @@ class ViewController: UIViewController {
             if let profiles = profiles, profiles.count > 0 {
                 let profile = profiles.lastObject as? srfidLinkProfile
                 return profile
-    //            link_profile_idx = profile?.getRFModeIndex() ?? 0
-    //            tari = profile?.getMaxTari() ?? 0
             }
         }
         return nil
     }
-    /// Singulation Configuration
+    /// Singulation Configuration Page 40
 }
 extension ViewController: EventReceiverDelegate {
     func establishConnection(readerID: Int32) {
