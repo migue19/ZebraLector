@@ -112,13 +112,13 @@ class ViewController: UIViewController {
             print("Request failed")
         }
     }
-    func antenaConfiguration(readerID: Int32) {
+    func antenaConfiguration(readerID: Int32) -> srfidAntennaConfiguration? {
         var antenna_cfg: srfidAntennaConfiguration?
         var error_response: NSString?
         let result = apiInstance.srfidGetAntennaConfiguration(readerID, aAntennaConfiguration: &antenna_cfg, aStatusMessage: &error_response)
-        if SRFID_RESULT_SUCCESS == result {
+        if responseManagement(result: result, readerID: readerID, error_response: error_response) {
             guard let antenna_cfg = antenna_cfg else {
-                return
+                return nil
             }
             let power: Double = Double(antenna_cfg.getPower())
             let linkProfileIdx = antenna_cfg.getLinkProfileIdx()
@@ -128,15 +128,51 @@ class ViewController: UIViewController {
             print("Antenna RF mode index: \(linkProfileIdx)")
             print("Antenna tari: \(antenaTari)")
             print("Antenna pre-filters application \(prefilters == false ? "No" : "Si")")
-        } else if SRFID_RESULT_RESPONSE_ERROR == result {
-            print("Error response from RFID reader: \(error_response ?? "")")
-        } else if SRFID_RESULT_RESPONSE_TIMEOUT == result {
-            print("Timeout occurs during communication with RFID reader")
-        } else if SRFID_RESULT_READER_NOT_AVAILABLE == result {
-            print("RFID reader with id = %d is not available \(readerID)")
-        } else {
-            print("Request failed")
+            return antenna_cfg
         }
+        return nil
+    }
+    func responseManagement(result: SRFID_RESULT, readerID: Int32, error_response: NSString?) -> Bool {
+        switch result {
+        case SRFID_RESULT_SUCCESS:
+            return true
+        case SRFID_RESULT_RESPONSE_ERROR:
+            print("Error response from RFID reader: \(error_response ?? "")")
+            return false
+        case SRFID_RESULT_RESPONSE_TIMEOUT:
+            print("Timeout occurs during communication with RFID reader")
+            return false
+        case SRFID_RESULT_READER_NOT_AVAILABLE:
+            print("RFID reader with id = %d is not available \(readerID)")
+            return false
+        default:
+            print("Request failed")
+            return false
+        }
+    }
+    func responseManagement(result: SRFID_RESULT, readerID: Int32, error_response: NSString?, completionHandler: @escaping (Result<Bool, RFIDError>) -> Void) {
+        switch result {
+        case SRFID_RESULT_SUCCESS:
+            completionHandler(.success(true))
+        case SRFID_RESULT_RESPONSE_ERROR:
+            print("Error response from RFID reader: \(error_response ?? "")")
+            completionHandler(.failure(.responseError))
+        case SRFID_RESULT_RESPONSE_TIMEOUT:
+            print("Timeout occurs during communication with RFID reader")
+            completionHandler(.failure(.timeOut))
+        case SRFID_RESULT_READER_NOT_AVAILABLE:
+            print("RFID reader with id = %d is not available \(readerID)")
+            completionHandler(.failure(.readerNotAvailable))
+        default:
+            print("Request failed")
+            completionHandler(.failure(.requestFailed))
+        }
+    }
+    enum RFIDError: Error {
+        case responseError
+        case timeOut
+        case readerNotAvailable
+        case requestFailed
     }
     /// Metodo para obtener el perfil
     /// RfMode, Min Tari, Max Tari, step Tari
